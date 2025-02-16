@@ -20,7 +20,7 @@ The version that targets iOS apps is [sterrasec/ipa-medit](https://github.com/st
 
 This is a demo that uses apk-medit to clear a game that requires one million taps to clear.
 
-<img src="screenshots/terminal.gif" width=645px> <img src="screenshots/demo-app.gif" width=185px>
+<img src="screenshots/terminal.gif" width=640px><img src="screenshots/demo-app.gif" width=185px>
 
 ## Installation
 
@@ -140,7 +140,6 @@ Find the target process and if there is only one, specify it as the target. `ps`
 Package: jp.sterrasec.tap1000000, PID: 4398
 Target PID has been set to 4398.
 ```
-
 
 #### attach
 
