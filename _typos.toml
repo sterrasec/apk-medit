@@ -1,0 +1,6 @@
+[default]
+extend-ignore-identifiers-re = [
+    "accoun",
+    "Splitted",
+    "splitted"
+]

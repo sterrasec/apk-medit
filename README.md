@@ -3,7 +3,9 @@
 [![GitHub release](https://img.shields.io/github/v/release/sterrasec/apk-medit.svg)](https://github.com/sterrasec/apk-medit/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sterrasec/apk-medit/blob/master/LICENSE)
 [![](https://img.shields.io/badge/Black%20Hat%20Arsenal-USA%202020-blue.svg)](https://www.blackhat.com/us-20/arsenal/schedule/index.html#apk-medit-memory-search-and-patch-tool-for-apk-without-root--android-ndk-21026)
+[![](https://img.shields.io/badge/CODE%20BLUE%20-Bluebox%202020-blue.svg)](https://archive.codeblue.jp/2020/talks/?content=talks_28)
 ![](https://github.com/sterrasec/apk-medit/actions/workflows/test.yml/badge.svg?branch=master)
+![typos workflow](https://github.com/sterrasec/apk-medit/actions/workflows/typos.yml/badge.svg?branch=master)
 
 Apk-medit is a memory search and patch tool for debuggable apk without root & ndk.
 It was created for mobile game security testing.
@@ -20,7 +22,7 @@ The version that targets iOS apps is [sterrasec/ipa-medit](https://github.com/st
 
 This is a demo that uses apk-medit to clear a game that requires one million taps to clear.
 
-<img src="screenshots/terminal.gif" width=645px> <img src="screenshots/demo-app.gif" width=185px>
+<img src="screenshots/terminal.gif" width=640px><img src="screenshots/demo-app.gif" width=185px>
 
 ## Installation
 
@@ -140,7 +142,6 @@ Find the target process and if there is only one, specify it as the target. `ps`
 Package: jp.sterrasec.tap1000000, PID: 4398
 Target PID has been set to 4398.
 ```
-
 
 #### attach
 
