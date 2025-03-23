@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Actions Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Check spelling of files in repository
-      uses: crate-ci/typos@v1.29.5
+      uses: crate-ci/typos@11ca4583f2f3f74c7e7785c0ecb20fe2c99a4308 # v1.29.5
