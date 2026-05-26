@@ -25,6 +25,8 @@ archives:
       - LICENSE
       - CREDITS
       - README.md
+checksum:
+  name_template: checksums.txt
 
 release:
   prerelease: auto
