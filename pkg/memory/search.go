@@ -10,7 +10,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/aktsk/apk-medit/pkg/converter"
+	"github.com/sterrasec/apk-medit/pkg/converter"
 )
 
 var splitSize = 0x5000000
