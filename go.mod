@@ -6,7 +6,7 @@ toolchain go1.26.3
 
 require (
 	github.com/c-bata/go-prompt v0.2.5
-	golang.org/x/sys v0.45.0
+	golang.org/x/sys v0.46.0
 )
 
 require (
