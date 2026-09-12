@@ -6,7 +6,7 @@ BINARY_NAME=medit
 all: build deploy
 
 test:
-	$(GOTEST) ./pkg/*
+	$(GOTEST) ./...
 
 build:
 	GOOS=linux GOARCH=arm64 GOARM=7 $(GOBUILD) -o $(BINARY_NAME)
