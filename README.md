@@ -27,6 +27,7 @@ This is a demo that uses apk-medit to clear a game that requires one million tap
 ## Installation
 
 Download the binary from [GitHub Releases](https://github.com/sterrasec/apk-medit/releases/), please push the binary in `/data/local/tmp/` on an android device.
+Binaries are provided for `arm64` (physical devices) and `amd64` (x86_64 Android emulators, e.g. on Windows PCs). Check the ABI of your device with `adb shell getprop ro.product.cpu.abi`.
 
 ```
 $ adb push medit /data/local/tmp/medit
@@ -43,6 +44,14 @@ $ make
 GOOS=linux GOARCH=arm64 GOARM=7 go build -o medit
 /bin/sh -c "adb push medit /data/local/tmp/medit"
 medit: 1 file pushed. 23.7 MB/s (3131205 bytes in 0.126s)
+```
+
+To build for an x86_64 Android emulator, use the `build-x86_64` target instead.
+
+```
+$ make build-x86_64 deploy
+GOOS=linux GOARCH=amd64 go build -o medit
+/bin/sh -c "adb push medit /data/local/tmp/medit"
 ```
 
 ## Usage
