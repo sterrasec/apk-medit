@@ -11,8 +11,10 @@ test:
 build:
 	GOOS=linux GOARCH=arm64 GOARM=7 $(GOBUILD) -o $(BINARY_NAME)
 
-build-linux:
+build-x86_64:
 	GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_NAME)
+
+build-linux: build-x86_64
 
 clean:
 	rm $(BINARY_NAME)
