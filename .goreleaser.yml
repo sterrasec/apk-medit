@@ -1,3 +1,4 @@
+version: 2
 project_name: medit
 env:
   - GO111MODULE=on
@@ -15,6 +16,7 @@ builds:
       - CGO_ENABLED=0
     goarch:
       - arm64
+      - amd64
     goos:
       - linux
     goarm:
