@@ -47,14 +47,6 @@ func complete(t prompt.Document, liveHelp bool) []prompt.Suggest {
 	return prompt.FilterHasPrefix(commandNames, word, true)
 }
 
-func newPromptWriter() prompt.ConsoleWriter {
-	w := promptio.NewStableAreaWriter(prompt.NewStdoutWriter())
-	if !promptio.LiveHelpPanel() {
-		w.DropBareNewlines = true
-	}
-	return w
-}
-
 func printCommandHelp(out *os.File) {
 	fmt.Fprintln(out, "Commands:")
 	for _, s := range commandHelp {
@@ -76,7 +68,6 @@ func promptOptions() []prompt.Option {
 		prompt.OptionPrefixTextColor(prompt.DarkBlue),
 		prompt.OptionPreviewSuggestionTextColor(prompt.Green),
 		prompt.OptionDescriptionTextColor(prompt.DarkGray),
-		prompt.OptionWriter(newPromptWriter()),
 	}
 	return opts
 }

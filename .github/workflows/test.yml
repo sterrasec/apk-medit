@@ -33,7 +33,7 @@ jobs:
       run: go mod download
 
     - name: Test
-      run: make test
+      run: make test-all
 
     - name: Build
       run: make build

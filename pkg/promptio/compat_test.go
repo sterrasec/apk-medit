@@ -19,19 +19,31 @@ func TestLiveHelpPanelDisabledOnWindows(t *testing.T) {
 	}
 }
 
-func TestLiveHelpPanelDisabledOnWindowsHostHints(t *testing.T) {
+func TestLiveHelpPanelDisabledOnWindowsLikeTerm(t *testing.T) {
 	cases := []map[string]string{
 		{"TERM": "dumb"},
 		{"TERM": ""},
 		{"TERM": "cygwin"},
-		{"WT_SESSION": "abc"},
-		{"SESSIONNAME": "Console", "TERM": "xterm-256color"},
-		{"OS": "Windows_NT", "TERM": "xterm-256color"},
 		{"APK_MEDIT_WINDOWS_CONSOLE": "1", "TERM": "xterm-256color"},
 	}
 	for i, env := range cases {
 		if liveHelpPanel("linux", getenv(env)) {
 			t.Fatalf("case %d %v: want live help disabled", i, env)
+		}
+	}
+}
+
+func TestLiveHelpPanelIgnoresHostOnlyHints(t *testing.T) {
+	// These never reach an Android process through adb, and WT_SESSION is
+	// also present inside WSL where the overlay renders fine.
+	cases := []map[string]string{
+		{"WT_SESSION": "abc", "TERM": "xterm-256color"},
+		{"SESSIONNAME": "Console", "TERM": "xterm-256color"},
+		{"OS": "Windows_NT", "TERM": "xterm-256color"},
+	}
+	for i, env := range cases {
+		if !liveHelpPanel("linux", getenv(env)) {
+			t.Fatalf("case %d %v: want live help kept", i, env)
 		}
 	}
 }
@@ -47,6 +59,12 @@ func TestLiveHelpPanelExplicitOverride(t *testing.T) {
 		"APK_MEDIT_LIVE_HELP": "1",
 	})) {
 		t.Fatal("APK_MEDIT_LIVE_HELP=1 should force the overlay back on")
+	}
+	if !liveHelpPanel("linux", getenv(map[string]string{
+		"TERM":                      "",
+		"APK_MEDIT_WINDOWS_CONSOLE": "0",
+	})) {
+		t.Fatal("APK_MEDIT_WINDOWS_CONSOLE=0 should cancel the TERM heuristic")
 	}
 }
 
