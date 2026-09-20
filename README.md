@@ -56,6 +56,14 @@ GOOS=linux GOARCH=amd64 go build -o medit
 
 ## Usage
 
+### Windows consoles
+
+On Windows 10 Cmd and PowerShell the always-on command description panel drifts upward and covers the prompt ([#37](https://github.com/sterrasec/apk-medit/issues/37)).
+When medit detects a Windows-like console (a native Windows build, or `TERM` empty/`dumb`), it prints the command list once at startup and disables the live panel instead; Tab still completes command names.
+
+- `APK_MEDIT_LIVE_HELP=1` / `0` forces the live panel on or off.
+- `APK_MEDIT_WINDOWS_CONSOLE=1` / `0` overrides the console detection.
+
 Use the `run-as` command to read files used by the target app, so apk-medit can only be used with apps that have the debuggable attribute enabled.
 To enable the debuggable attribute, open `AndroidManifest.xml`, add the following xml attribute in application xml node:
 

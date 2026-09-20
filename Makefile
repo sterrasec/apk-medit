@@ -5,8 +5,12 @@ BINARY_NAME=medit
 
 all: build deploy
 
+# ./cmd only compiles on Linux (ptrace), so keep the default target usable on macOS.
 test:
-	$(GOTEST) ./pkg/*
+	$(GOTEST) ./pkg/...
+
+test-all:
+	$(GOTEST) ./...
 
 build:
 	GOOS=linux GOARCH=arm64 GOARM=7 $(GOBUILD) -o $(BINARY_NAME)

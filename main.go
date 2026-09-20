@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/sterrasec/apk-medit/cmd"
+	"github.com/sterrasec/apk-medit/pkg/promptio"
 
 	prompt "github.com/c-bata/go-prompt"
 )
@@ -142,20 +143,6 @@ func parseAddr(arg string) (int, error) {
 	return 0, err
 }
 
-func completer(t prompt.Document) []prompt.Suggest {
-	return []prompt.Suggest{
-		{Text: "find   <int>", Description: "Search the specified integer."},
-		{Text: "find   <datatype> <int>", Description: "Types can be specified are string, word, dword, qword."},
-		{Text: "filter <int>", Description: "Filter previous search results that match the current search results."},
-		{Text: "patch  <int>", Description: "Write the specified value on the address found by search."},
-		{Text: "attach", Description: "Attach to the target process by ptrace."},
-		{Text: "detach", Description: "Detach from the attached process."},
-		{Text: "ps", Description: "Find the target process and if there is only one, specify it as the target."},
-		{Text: "dump <begin addr> <end addr>", Description: "Display memory dump like hexdump"},
-		{Text: "exit"},
-	}
-}
-
 func main() {
 	flag.BoolVar(&withoutPtrace, "without-ptrace", false, "Memory modification without ptrace, which is not available in Android 10 and later")
 	flag.StringVar(&specificPID, "pid", "", "Attach to a process with this pid")
@@ -175,15 +162,9 @@ func main() {
 		appPID = specificPID
 	}
 	addrCache = []cmd.Found{}
-	p := prompt.New(
-		executor,
-		completer,
-		prompt.OptionTitle("medit: MEmory eDIT tool"),
-		prompt.OptionPrefix("> "),
-		prompt.OptionInputTextColor(prompt.Cyan),
-		prompt.OptionPrefixTextColor(prompt.DarkBlue),
-		prompt.OptionPreviewSuggestionTextColor(prompt.Green),
-		prompt.OptionDescriptionTextColor(prompt.DarkGray),
-	)
+	if !promptio.LiveHelpPanel() {
+		printCommandHelp(os.Stdout)
+	}
+	p := prompt.New(executor, completer, promptOptions()...)
 	p.Run()
 }
