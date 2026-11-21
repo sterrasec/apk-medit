@@ -270,6 +270,15 @@ You can run test codes with make command.
 $ make test
 ```
 
+## Learn More
+
+apk-medit is used in
+[Practical Android App Security Testing](https://www.coldedgetrainings.com/?utm_source=github&utm_medium=readme&utm_campaign=apk-medit),
+a hands-on course by Cold Edge Trainings. The course covers testing
+Android apps from the APK to the backend API on a non-rooted device,
+including how memory tampering can bypass client-side controls, with
+lab APKs and flag exercises.
+
 ## License
 
 MIT License
